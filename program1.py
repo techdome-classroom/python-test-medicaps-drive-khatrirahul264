@@ -1,23 +1,15 @@
 class Solution(object):
     def isValid(self, s):
-        stack=[]
-        brackets_map={')':'(',']':'[','}':'{'}
-        for char in s:
-            if char in brackets_map.values():
-                stack.append(char)
-            elif char in brackets_map.keys():
-                if not stack or brackets_mp[char] != stack.pop():
-                    return False
-            else:
+        stack = [] 
+        pairs = {
+            '(': ')',
+            '{': '}',
+            '[': ']'
+        }
+        for bracket in s:
+            if bracket in pairs:
+                stack.append(bracket)
+            elif len(stack) == 0 or bracket != pairs[stack.pop()]:
                 return False
 
-         return not stack
-
-solution=Solution()
-print(solution.isValid("(())[]{}"))
-    
-
-
-
-  
-
+        return len(stack) == 0
